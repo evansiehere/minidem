@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Picture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        #content {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .output-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .output-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <h2>Upload Picture</h2>
+        <p>Selected Option: <span id="selected-option"></span></p>
+        <p>Selected File: <span id="selected-file"></span></p>
+        <input type="file" id="file-input">
+        <br>
+        <!--button class="upload-btn" id="upload-btn">Upload</button>a-->
+        <button class="output-btn" id="output-btn">Output</button>
+
+        <!-- show the image -->
+        <div id="image-container" style="display: none;">
+            <img id="image" class="rounded-xl" src="" alt="Uploaded Image" style="max-width: 30%; margin-top: 30px; border-radius: 10px;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            const selectedOption = params.get('option');
+
+            if (selectedOption === "UseCamera") {
+                var item = localStorage.getItem("capturedImage");
+                var image = document.getElementById("image");
+                image.src = item;
+                document.getElementById("image-container").style.display = "block";
+
+                document.getElementById("selected-file").innerText = "Captured_Image";
+
+            }
+            document.getElementById('selected-option').innerText = selectedOption;
+
+            const fileInput = document.getElementById("file-input");
+            const OutputBtn = document.getElementById("output-btn");
+
+            // Handle upload button click
+            OutputBtn.addEventListener("click", function () {
+                window.location.href = 'output.html';
+            });
+
+            // Handle file input change
+            fileInput.addEventListener("change", function () {
+                // Display selected file name
+                document.getElementById('selected-file').innerText = this.files[0].name;
+            });
+            // Trigger file input if selected option was "Use Camera"
+            if (selectedOption === "UseCamera") {
+                fileInput.click();
+            }
+        });
+    </script>
+</body>
+
+</html>

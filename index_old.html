@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FruitEval</title>
+    <link rel="stylesheet" href="Fruitstyles.css">
+</head>
+<body style="background-image: url('img/bg.jpg'); background-size: cover;">
+    <div id="preloader">
+        <div id="loader"></div>
+        <h1>Loading FruitEval...</h1>
+    </div>
+
+    <main class="container">
+        <button class="add-image-btn" id="add-image-btn">Add an Image of the Fruit</button>
+        
+        <div class="modal" id="modal">
+            <div class="modal-content" style="text-align: center;">
+                <span class="close" id="close">&times;</span>
+                <h2>Upload Picture</h2>
+                <button class="add-btn" id="add-btn">Use Camera</button>
+                <input type="file" id="file-input" style="display: none;">
+                <button class="browse-btn" id="browse-btn" onclick="uploadFile()">Browse from Files</button>
+            </div>
+        </div>
+       <div style="display: flex;flex-direction: column;">
+        <div id="camera-section" style="display: none;">
+            <h2>Camera</h2>
+            <video id="video" width="640" height="480" autoplay></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            
+        </div>
+        <button class="capture-btn" id="capture-btn">Capture</button>
+       </div>
+        <div id="uploaded-picture" style="display: none;">
+            <h2>Uploaded Picture</h2>
+            <p id="selected-file">Selected File: <span></span></p>
+            <button class="upload-btn" id="upload-btn">Upload</button>
+        </div>
+    </main>
+    
+    <script src="Fruitscript.js"></script>
+    <!-- <script src="upload.js"></script> -->
+</body>
+</html>
